@@ -48,14 +48,29 @@ public class SingleLinkedList {
         }
         return count;
     }
+
+    public void insertFirst(int data){
+        ListNode node = new ListNode(data);
+        node.data = data;
+
+        if(head != null){
+            node.next = head;
+        }
+        head = node;
+    }
     public static void main(String[] args) {
 
         SingleLinkedList singleLinkedList = new SingleLinkedList();
 
-        singleLinkedList.insert(1);
         singleLinkedList.insert(2);
+        singleLinkedList.insert(3);
 
         singleLinkedList.print();
-        System.out.println(singleLinkedList.size());
+        System.out.println("size of linked list "+singleLinkedList.size());
+
+        singleLinkedList.insertFirst(1);
+
+        singleLinkedList.print();
+        System.out.println("size of linked list "+singleLinkedList.size());
     }
 }
