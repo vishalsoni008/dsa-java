@@ -58,6 +58,22 @@ public class SingleLinkedList {
         }
         head = node;
     }
+
+    public void insertLast(int data){
+        ListNode node = new ListNode(data);
+        node.data = data;
+
+        ListNode current  = head;
+
+        if(head == null){
+            head = node;
+        }
+
+        while (current.next != null){
+            current = current.next;
+        }
+        current.next = node;
+    }
     public static void main(String[] args) {
 
         SingleLinkedList singleLinkedList = new SingleLinkedList();
@@ -69,7 +85,10 @@ public class SingleLinkedList {
         System.out.println("size of linked list "+singleLinkedList.size());
 
         singleLinkedList.insertFirst(1);
+        singleLinkedList.print();
+        System.out.println("size of linked list "+singleLinkedList.size());
 
+        singleLinkedList.insertLast(4);
         singleLinkedList.print();
         System.out.println("size of linked list "+singleLinkedList.size());
     }
