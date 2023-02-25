@@ -145,6 +145,18 @@ public class SingleLinkedList {
         return current;
     }
 
+    public boolean findElement(int data){
+        ListNode current = head;
+
+        while (current != null){
+            if(current.data == data){
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
 
         SingleLinkedList singleLinkedList = new SingleLinkedList();
@@ -165,6 +177,8 @@ public class SingleLinkedList {
 
         singleLinkedList.insertAtSpecificIndex(12,2);
         singleLinkedList.print();
+
+        System.out.println("give element present or not : "+singleLinkedList.findElement(3));
 
         System.out.println("first element deleted from linked list : "+singleLinkedList.deleteStart().data);
         singleLinkedList.print();
