@@ -74,6 +74,77 @@ public class SingleLinkedList {
         }
         current.next = node;
     }
+    public void insertAtSpecificIndex(int data, int index){
+        ListNode node = new ListNode(data);
+        node.data = data;
+
+        if(index == 1){
+            node.next = head;
+            head = node;
+        }
+        else {
+            int counter = 1;
+            ListNode pre = head;
+
+            while (counter< index-1){
+                counter++;
+                pre = pre.next;
+            }
+            ListNode current = pre.next;
+            node.next = current;
+            pre.next = node;
+        }
+    }
+//    public void deleteStart(){
+//
+//        head = head.next.next;
+//    }
+
+    public ListNode deleteStart(){
+        if(head == null){
+            return null;
+        }
+        ListNode deletedNode = head;
+        head = head.next;
+        deletedNode.next = null;
+
+        return deletedNode;
+    }
+
+    public ListNode deleteLast() {
+        if(head == null || head.next == null){
+            return null;
+        }
+
+        ListNode current = head;
+        ListNode pre = null;
+
+        while (current.next != null){
+            pre = current;
+            current = current.next;
+        }
+        pre.next = null;
+        return current;
+    }
+
+    public ListNode deleteSpecificIndex(int index) {
+        ListNode current = null;
+        if (index == 1) {
+            deleteStart();
+        } else {
+            ListNode pre = head;
+            int count = 1;
+
+            while (count < index - 1) {
+                pre = pre.next;
+                count++;
+            }
+            current = pre.next;
+            pre.next = current.next;
+        }
+        return current;
+    }
+
     public static void main(String[] args) {
 
         SingleLinkedList singleLinkedList = new SingleLinkedList();
@@ -91,5 +162,17 @@ public class SingleLinkedList {
         singleLinkedList.insertLast(4);
         singleLinkedList.print();
         System.out.println("size of linked list "+singleLinkedList.size());
+
+        singleLinkedList.insertAtSpecificIndex(12,2);
+        singleLinkedList.print();
+
+        System.out.println("first element deleted from linked list : "+singleLinkedList.deleteStart().data);
+        singleLinkedList.print();
+
+        System.out.println("last element deleted from linked list : "+singleLinkedList.deleteLast().data);
+        singleLinkedList.print();
+
+        System.out.println("specific element delete from linked list : "+singleLinkedList.deleteSpecificIndex(3).data);
+        singleLinkedList.print();
     }
 }
