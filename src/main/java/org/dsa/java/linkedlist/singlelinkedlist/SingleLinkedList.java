@@ -157,6 +157,21 @@ public class SingleLinkedList {
         return false;
     }
 
+    public ListNode reverseList(ListNode node){
+        ListNode current = head;
+        ListNode pre= null;
+        ListNode next = null;
+
+        while (current != null){
+            next = current.next;
+            current.next = pre;
+            pre = current;
+            current = next;
+        }
+        node = pre;
+        return node;
+    }
+
     public static void main(String[] args) {
 
         SingleLinkedList singleLinkedList = new SingleLinkedList();
@@ -176,6 +191,10 @@ public class SingleLinkedList {
         System.out.println("size of linked list "+singleLinkedList.size());
 
         singleLinkedList.insertAtSpecificIndex(12,2);
+        singleLinkedList.print();
+
+        singleLinkedList.head = singleLinkedList.reverseList(singleLinkedList.head);
+        System.out.println("reverse linked list is : ");
         singleLinkedList.print();
 
         System.out.println("give element present or not : "+singleLinkedList.findElement(3));
