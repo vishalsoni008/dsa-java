@@ -4,7 +4,7 @@ public class FindingLoops {
 
     Node head;
 
-    public static class Node{
+    private static class Node{
         int data;
         Node next;
 
@@ -13,7 +13,7 @@ public class FindingLoops {
         }
     }
 
-    boolean isLooped(){
+    private boolean isLooped(){
         Node fastPointer = head;
         Node slowPointer = head;
 
@@ -28,7 +28,7 @@ public class FindingLoops {
         return false;
     }
 
-    Node startPointOfLoop(){
+    private Node startPointOfLoop(){
         Node fastPointer = head;
         Node slowPointer = head;
 
@@ -41,6 +41,32 @@ public class FindingLoops {
             }
         }
         return null;
+    }
+
+    private Node removeLoop(){
+        Node fastPointer = head;
+        Node slowPointer = head;
+
+        while (fastPointer != null && fastPointer.next != null){
+            fastPointer = fastPointer.next.next;
+            slowPointer = slowPointer.next;
+            if (slowPointer == fastPointer){
+                return findAndRemove(slowPointer);
+            }
+        }
+        return null;
+    }
+
+    private Node findAndRemove(Node slowPointer) {
+        Node pre = null;
+        Node temp = head;
+
+        while (temp != slowPointer){
+            pre = slowPointer;
+            slowPointer = slowPointer.next;
+            temp = temp.next;
+        }
+        return pre.next = null;
     }
 
     private Node getStartElement(Node slowPointer) {
@@ -73,5 +99,8 @@ public class FindingLoops {
         System.out.println(findingLoops.isLooped());
 
         System.out.println(findingLoops.startPointOfLoop().data);
+
+        findingLoops.removeLoop();
+        System.out.println(findingLoops.isLooped());
     }
 }
