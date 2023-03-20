@@ -38,6 +38,7 @@ public class BinaryTreeImplement {
         System.out.print(root.data+" ");
         preOrderTraversalUsingRecursion(root.left);
         preOrderTraversalUsingRecursion(root.right);
+        //op 1 2 4 5 3
     }
     private void preOrderUsingItration(){
         if(root == null)
@@ -60,6 +61,26 @@ public class BinaryTreeImplement {
         }
     }
 
+    private void inOrderUsingRecursion(TreeNode root){
+        if(root == null){
+            return;
+        }
+        inOrderUsingRecursion(root.left);
+        System.out.print(root.data+" ");
+        inOrderUsingRecursion(root.right);
+        //op 4 2 5 1 3
+    }
+
+    private void postOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.print(root.data+" ");
+        //op - 4 5 2 3 1
+    }
+
     public static void main(String[] args) {
 
         BinaryTreeImplement binaryTreeImplement = new BinaryTreeImplement();
@@ -70,6 +91,14 @@ public class BinaryTreeImplement {
         System.out.println();
         System.out.println("presorder using iteration");
         binaryTreeImplement.preOrderUsingItration();
+
+        System.out.println();
+        System.out.println("in order using recursion");
+        binaryTreeImplement.inOrderUsingRecursion(binaryTreeImplement.root);
+
+        System.out.println();
+        System.out.println("post order using recursion");
+        binaryTreeImplement.postOrder(binaryTreeImplement.root);
 
     }
 }
