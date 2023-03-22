@@ -1,5 +1,7 @@
 package org.dsa.java.tree.binarytree;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BinaryTreeImplement {
@@ -81,6 +83,50 @@ public class BinaryTreeImplement {
         //op - 4 5 2 3 1
     }
 
+    private void traversalLevelWise(TreeNode root){
+        int level = 0;
+        if(root == null){
+            return;
+        }
+        Queue<TreeNode> treeNodes = new LinkedList<>();
+        treeNodes.offer(root);
+
+        while (!treeNodes.isEmpty()){
+            TreeNode temp = treeNodes.poll();
+            System.out.print(temp.data+" ");
+
+            if(temp.left != null){
+                //level++;
+                treeNodes.offer(temp.left);
+            }
+            if (temp.right != null){
+                level++;
+                treeNodes.offer(temp.right);
+            }
+        }
+        System.out.println();
+        System.out.println("levels are "+level);
+        // op 1 2 3 4 5
+    }
+
+    private int maxValue(TreeNode root) {
+        if(root == null){
+            return Integer.MIN_VALUE;
+        }
+        int result = root.data;
+
+        int left = maxValue(root.left);
+        int right = maxValue(root.right);
+
+        if(left>result){
+            result = left;
+        }
+        if (right>result){
+            result = right;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
 
         BinaryTreeImplement binaryTreeImplement = new BinaryTreeImplement();
@@ -100,5 +146,12 @@ public class BinaryTreeImplement {
         System.out.println("post order using recursion");
         binaryTreeImplement.postOrder(binaryTreeImplement.root);
 
+        System.out.println();
+        System.out.println("level traversall");
+        binaryTreeImplement.traversalLevelWise(binaryTreeImplement.root);
+
+       // System.out.println();
+        System.out.println("max value is ");
+        System.out.println(binaryTreeImplement.maxValue(binaryTreeImplement.root));
     }
 }
