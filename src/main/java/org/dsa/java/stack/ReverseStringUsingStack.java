@@ -8,11 +8,11 @@ public class ReverseStringUsingStack {
 
         Stack<Character> stack = new Stack<>();
 
-        for (int i=0;i<str.length();i++){
+        for (int i = 0; i < str.length(); i++) {
             stack.push(str.charAt(i));
         }
 
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             System.out.print(stack.peek());
             stack.pop();
         }

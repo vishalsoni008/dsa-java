@@ -4,89 +4,117 @@ public class SingleLinkedList {
 
     private ListNode head;
 
-    protected static class ListNode{
-        int data;
-        ListNode next;
+    public static void main(String[] args) {
 
-        public ListNode(int data){
-            this.data = data;
-            this.next = null;
-        }
+        SingleLinkedList singleLinkedList = new SingleLinkedList();
+
+        singleLinkedList.insert(2);
+        singleLinkedList.insert(3);
+
+        singleLinkedList.print();
+        System.out.println("size of linked list " + singleLinkedList.size());
+
+        singleLinkedList.insertFirst(1);
+        singleLinkedList.print();
+        System.out.println("size of linked list " + singleLinkedList.size());
+
+        singleLinkedList.insertLast(4);
+        singleLinkedList.print();
+        System.out.println("size of linked list " + singleLinkedList.size());
+
+        singleLinkedList.insertAtSpecificIndex(12, 2);
+        singleLinkedList.print();
+
+        singleLinkedList.head = singleLinkedList.reverseList(singleLinkedList.head);
+        System.out.println("reverse linked list is : ");
+        singleLinkedList.print();
+
+        System.out.println("give element present or not : " + singleLinkedList.findElement(3));
+
+        System.out.println("first element deleted from linked list : " + singleLinkedList.deleteStart().data);
+        singleLinkedList.print();
+
+        System.out.println("last element deleted from linked list : " + singleLinkedList.deleteLast().data);
+        singleLinkedList.print();
+
+        System.out.println("specific element delete from linked list : " + singleLinkedList.deleteSpecificIndex(3).data);
+        singleLinkedList.print();
     }
 
-    public void insert(int data){
+    public void insert(int data) {
         ListNode node = new ListNode(data);
         node.data = data;
 
-        if(head == null){
+        if (head == null) {
             head = node;
         }
 
         head.next = node;
 
     }
-    public void print(){
+
+    public void print() {
         ListNode node = head;
 
-        while (node != null){
-            System.out.print(node.data+" ---> ");
+        while (node != null) {
+            System.out.print(node.data + " ---> ");
             node = node.next;
         }
         System.out.println("null");
     }
 
-    public int size(){
-        if (head == null){
+    public int size() {
+        if (head == null) {
             return 0;
         }
         int count = 0;
         ListNode node = head;
 
-        while (node != null){
+        while (node != null) {
             count++;
             node = node.next;
         }
         return count;
     }
 
-    public void insertFirst(int data){
+    public void insertFirst(int data) {
         ListNode node = new ListNode(data);
         node.data = data;
 
-        if(head != null){
+        if (head != null) {
             node.next = head;
         }
         head = node;
     }
 
-    public void insertLast(int data){
+    public void insertLast(int data) {
         ListNode node = new ListNode(data);
         node.data = data;
 
-        ListNode current  = head;
+        ListNode current = head;
 
-        if(head == null){
+        if (head == null) {
             head = node;
         }
 
-        while (current.next != null){
+        while (current.next != null) {
             current = current.next;
         }
         current.next = node;
     }
-    public void insertAtSpecificIndex(int data, int index){
+
+    public void insertAtSpecificIndex(int data, int index) {
         ListNode node = new ListNode(data);
         node.data = data;
 
-        if(index == 1){
+        if (index == 1) {
             node.next = head;
             head = node;
-        }
-        else {
+        } else {
             int counter = 1;
             ListNode pre = head;
 
-            while (counter< index-1){
+            while (counter < index - 1) {
                 counter++;
                 pre = pre.next;
             }
@@ -100,8 +128,8 @@ public class SingleLinkedList {
 //        head = head.next.next;
 //    }
 
-    public ListNode deleteStart(){
-        if(head == null){
+    public ListNode deleteStart() {
+        if (head == null) {
             return null;
         }
         ListNode deletedNode = head;
@@ -112,14 +140,14 @@ public class SingleLinkedList {
     }
 
     public ListNode deleteLast() {
-        if(head == null || head.next == null){
+        if (head == null || head.next == null) {
             return null;
         }
 
         ListNode current = head;
         ListNode pre = null;
 
-        while (current.next != null){
+        while (current.next != null) {
             pre = current;
             current = current.next;
         }
@@ -145,11 +173,11 @@ public class SingleLinkedList {
         return current;
     }
 
-    public boolean findElement(int data){
+    public boolean findElement(int data) {
         ListNode current = head;
 
-        while (current != null){
-            if(current.data == data){
+        while (current != null) {
+            if (current.data == data) {
                 return true;
             }
             current = current.next;
@@ -157,12 +185,12 @@ public class SingleLinkedList {
         return false;
     }
 
-    public ListNode reverseList(ListNode node){
+    public ListNode reverseList(ListNode node) {
         ListNode current = head;
-        ListNode pre= null;
+        ListNode pre = null;
         ListNode next = null;
 
-        while (current != null){
+        while (current != null) {
             next = current.next;
             current.next = pre;
             pre = current;
@@ -172,40 +200,13 @@ public class SingleLinkedList {
         return node;
     }
 
-    public static void main(String[] args) {
+    protected static class ListNode {
+        int data;
+        ListNode next;
 
-        SingleLinkedList singleLinkedList = new SingleLinkedList();
-
-        singleLinkedList.insert(2);
-        singleLinkedList.insert(3);
-
-        singleLinkedList.print();
-        System.out.println("size of linked list "+singleLinkedList.size());
-
-        singleLinkedList.insertFirst(1);
-        singleLinkedList.print();
-        System.out.println("size of linked list "+singleLinkedList.size());
-
-        singleLinkedList.insertLast(4);
-        singleLinkedList.print();
-        System.out.println("size of linked list "+singleLinkedList.size());
-
-        singleLinkedList.insertAtSpecificIndex(12,2);
-        singleLinkedList.print();
-
-        singleLinkedList.head = singleLinkedList.reverseList(singleLinkedList.head);
-        System.out.println("reverse linked list is : ");
-        singleLinkedList.print();
-
-        System.out.println("give element present or not : "+singleLinkedList.findElement(3));
-
-        System.out.println("first element deleted from linked list : "+singleLinkedList.deleteStart().data);
-        singleLinkedList.print();
-
-        System.out.println("last element deleted from linked list : "+singleLinkedList.deleteLast().data);
-        singleLinkedList.print();
-
-        System.out.println("specific element delete from linked list : "+singleLinkedList.deleteSpecificIndex(3).data);
-        singleLinkedList.print();
+        public ListNode(int data) {
+            this.data = data;
+            this.next = null;
+        }
     }
 }
