@@ -24,19 +24,21 @@ public class SearchElementWithCount {
     }
 
     public static int count(int[] arr,int mid){
-        int count =1;
-        int i = mid-1;
-        int j = mid+1;
+        int count = 1;
+        int i = mid - 1;
+        int j = mid + 1;
 
-        while(i>=0 && j<arr.length){
-            if(arr[i] == arr[mid]){
+        while (i >= 0) {
+            if (arr[i] == arr[mid]) {
                 count++;
                 i--;
             }
             else {
                 break;
             }
-            if(arr[j] == arr[mid]){
+        }
+        while (j < arr.length) {
+            if (arr[j] == arr[mid]) {
                 count++;
                 j++;
             }
@@ -49,7 +51,7 @@ public class SearchElementWithCount {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{1,2,2,2,3,4,5,6,7,8,9};
+        int[] arr = new int[]{1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8, 9};
 
         System.out.println(search(arr,2));
     }
